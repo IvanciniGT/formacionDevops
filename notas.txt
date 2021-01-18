@@ -1,0 +1,72 @@
+Servidor
+    Jenkins - docker
+    Maven
+    Nexus
+    Sonarqube - docker
+    Tomcat - docker -> WAS
+    gitlab
+
+Workstation
+    Maven
+    IDE
+
+Jenkins: Aplicacion web
+    Configuramos: Project/Job/Pipeline
+        Es una secuencia de tasks (tareas) que Jenkins va a pedir a alguien que haga
+        Hay 2 formas: 
+            Sencilla: Formularios
+            Guay: Ficheros groovy (java)  <( al principio, si no conocemos Jenkins es más compleja)
+    Configurar: Plugins
+        Plugin: Un programa que es el que ejecuta las tasks
+            Maven
+            Git
+            Sonarqube
+            WAS
+            Junit
+            Nexus
+
+    Jenkins tiene que tener acceso al código fuente del proyecto:
+        CVS -Sistem centralizado
+        Git - gitlab - docker
+
+----------
+git: Linus Torwalds
+    Es el 'kernel' de un sistema de control de versión
+
+    Github - Microsoft (privada como publica)
+        Repositorios publicos se usa sin limitación y gratis
+        Repositorios privados: Gratis hasta 3/5 usuarios
+            A partir de ahí es de pago
+    Gitlab - Opensource
+    Bitbucket
+
+    Todas estas distribuciones de git, trabajan mediante protocolo GIT
+
+    Git es un sistema de control de versión DISTRIBUIDO
+        - Todo el código, y la bd de cambios está en cada ordenador de cada desarrollador
+        - Tener repositorioS remotos (centralizados)
+
+    Xavi --- ejb cambios (sube al cvs) pero lo tiene a medias hoy
+    Viçent --- descarga lo último de Xavi para seguir avanzando
+                Le falla todo
+
+        Xavi llama a Viçent.... Oye, que lo subo, pero no te actualices...
+    ---------
+    Xavi, hace un commit de sus cambios ---> Los cambios se guardan en un repo local
+    Viçent cuando hace un pull recibe los últimos cambios que Xavi haya enviado al repo central
+    Xavi acaba su trabajo, y hace un commit -> repo local... después hace un 'push' ---> mandar al central
+    Viçent hace el nuevo pull descargue las actualizaciones de Xavi.
+
+---------
+master <<< slave
+main   <<< worker
+--------
+git: master
+github: main
+
+--------
+Instalación de Jenkins  Docker (docker-compose)
+
+---
+
+---

@@ -1,0 +1,122 @@
+Metodologías en cascada ---> RUINA
+Metodologias ágiles     --> GUAY
+    ---> Me ayudan a resolver el grave problema de los REQUISITOS CAMBIANTES y de el FEEDBACK
+    Pero...
+        ---> Me obligan a instalar en produción cada 2-3...5 semanas
+            ----> Problema --- Coste
+        ---- Instalar en producción
+            --- Pruebas y verificaciones
+                Si voy a entregar por fases
+                    En fase 1, tengo que hacer unas pruebas X
+                    En fase 2, tengo que hacer unas pruebas X+Y
+            --- Instalar en pre-producción (test, integración): 
+        --- La única cosa que puedo hacer para que tanta instalación y pruebas
+        no me hunda el proyecto, es AUTOMATIZAR
+
+DEVOPS -- Es la filosofía de la automatización
+    ---- Quiero automatizar TODO lo que pueda ser automatizado
+
+(Planificación del proyecto)
+(Desarrollo)
+    GIT, SVN, CVS
+Empaquetado (compilación....)
+    Maven, gradle, msbuild...
+---> Desarrollo ágil
+Pruebas (ISTQB)
+    Estaticas -  Que no requiere ejecución del software
+        Tienen que ver con CALIDAD de código -> Mantenibilidad
+        SonarQube
+    Dinamicas - Si requieren ejecución del software
+        Funcionales
+            Unitarias - Probar cada función de forma independiente
+                Código: jUnit, TestNG, ...
+                Servicio Web: 
+                    SoapUI:  SOAP
+                    Postman: REST
+                Mocks
+            Integración - Probar que 2 funciones funcionan bien conjuntamente
+                Verificar problemas de COMUNICACION
+            Sistema - Pruebo el sistema en su conjunto
+            Aceptación
+        No Funcionales
+            Rendimiento
+                JMeter
+            Estres
+                JMeter
+            Carga
+                JMeter
+            UI
+                Selenium
+            UX <<< Muy dificil automatizarlas
+            ...
+    Esas pruebas hay que ejecutarlas en algun sitio:
+        Crear un entorno
+            Automatizar la creación del entorno
+                Disponer de harware nuevo
+                    Automatizar
+                    Terraform
+                    Vagrant
+        Entorno de Integración / Preproducción
+            Instalación
+----> Integración Continua: Continuous Integration
+Generación de una release - ARTEFACTO
+    Que pasa con las pruebas?
+    La quiero tener controlada. 
+        Es distinto el codigo fuente del proyecto de la RELEASE
+    Repositorios de artefactos: Nexus, Artefactory
+----> Entrega continua: Continuous Delivery
+Despliegue
+    Automatizar este trabajo:
+        PUPPET
+        Ansible
+        Docker
+----> Despliegue continuo: Continuous Deployment
+Operación y monitorización
+    ElasticSearch/Kibana
+    Prometheus/Grafana
+    Nagios
+----> Filosofía DEVOPS completa
+
+Concepto de automatización:
+    Maven: Automatizar el empaquetado del proyecto
+        Quien ejecuta maven: Yo desde linea de comandos, o apretando un botón en el IDE
+        Esta tarea es MANUAL (la llamada a maven)
+    JUnit: Automatizar las pruebas Unitarias
+        Quien ejecuta las pruebas unitarias: YO
+    Sonarqube: Automa. pruebas estáticas
+        Quien le pide a Sonarqube que haga las pruebas estáticas: YO
+
+El proceso no está completamente automatizado.
+    Quiero eliminar el factor YO => Jenkins
+    .....
+
+Jenkins es un MAYORDOMO: Un mayordomo no hace ni la güeva.
+    Jenkins lo que hace es llamar a otros (encargar a otros)
+    que hagan cosas
+
+Jenkins es un servidor de CI/CD
+    TravisCI
+    Azure Devops
+    TeamCity
+    Bamboo
+
+
+Cada vez que un desarrollador haga commit en el git <<< TRIGGER
+Quiero que tomes el codigo del desarrollador,
+Compiles y empaq. con maven
+Instales en el entorno de pre
+Ejecutes pruebas unitarias
+                ... estaticas, ... UI
+Si todo va bien, genera un artefacto y enchufalo en NEXUS
+Generar un email y mandarlo a los intervinientes del proyecto
+
+
+
+Maven ---> Generar un ear ---> WAS
+    Maven que instale ear en WAS
+    Otro tipo de programa que instale ear en WAS
+
+
+
+
+ALM --- Application Lifecycle Management
