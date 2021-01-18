@@ -1,5 +1,5 @@
 version: '3.6'
-
+# Con este docker compose creamos 2 contenedores, uno de jenkins y otro de tomcat
 services:
     mi-jenkins:
         container_name: mi-jenkins
