@@ -1,0 +1,30 @@
+version: '3.6'
+
+services:
+  websphere:
+    image: ibmcom/websphere-traditional:latest
+    container_name: websphere
+    restart: always
+    volumes:
+      - ./PASSWORD:/tmp/PASSWORD
+    ports:
+      - 9043:9043
+      - 9443:9443
+
+# https://172.18.0.2:9043/ibm/console/login.do?action=secure
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    container_name: sqlserver
+    restart: always
+    ports:
+      - 1443:1443
+    environment:
+      - SA_PASSWORD=MyPassw0rd+
+      - ACCEPT_EULA=Y
+    volumes:
+      - .:/compartida
+#docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P MyPassw0rd+
+#docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P MyPassw0rd+ -i /compartida/create.sql
+#docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U appDBCDonaPreUser -P MyPassw0rd+ -i /compartida/create2.sql
+#docker exec -it sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U appDBCDonaPreUser -P MyPassw0rd+

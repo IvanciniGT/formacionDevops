@@ -1,0 +1,19 @@
+version: '3.6'
+
+services:
+    mi-jenkins:
+        container_name: mi-jenkins
+        image: jenkins/jenkins:lts
+        ports:
+            - 8081:8080
+        volumes:
+            - /home/curso/jenkins:/var/jenkins_home
+    mi-tomcat:
+        container_name: mi-tomcat
+        image: bitnami/tomcat
+        ports:
+            - 8080:8080
+        environment:
+            - TOMCAT_USERNAME=admin
+            - TOMCAT_PASSWORD=password
+            - TOMCAT_ALLOW_REMOTE_MANAGEMENT=1
