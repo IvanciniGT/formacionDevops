@@ -7,7 +7,7 @@ public class Calculadora{
      * @return El resultado de la suma
      */
     public static int suma(int numero1, int numero2){
-        return 0; // No escribo el codigo
+        return numero1-numero2; // No escribo el codigo
     }
     
 }
