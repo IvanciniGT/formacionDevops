@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="jvtCasalDonaEJB">
+		<jta-data-source>was/SQLServerAppDBCDNoXA</jta-data-source>
+		<class>jvtCasalDonaEJB.constants.Ciutats</class>
+		<class>jvtCasalDonaEJB.Consulta</class>
+		<class>jvtCasalDonaEJB.constants.Provincies</class>
+		<class>jvtCasalDonaEJB.Solicitant</class>
+		<class>jvtCasalDonaEJB.constants.Area</class>
+		<class>jvtCasalDonaEJB.constants.AreaConsulta</class>
+		<class>jvtCasalDonaEJB.constants.Pais</class>
+		<class>jvtCasalDonaEJB.constants.Comarques</class>
+		<class>jvtCasalDonaEJB.AmbitViolencia</class>
+		<class>jvtCasalDonaEJB.constants.CanalEntrada</class>
+		<class>jvtCasalDonaEJB.constants.DerivacioConsellComarcal</class>
+		<class>jvtCasalDonaEJB.constants.DerivacioEstat</class>
+		<class>jvtCasalDonaEJB.constants.DerivacioGeneralitat</class>
+		<class>jvtCasalDonaEJB.constants.DerivacioInterna</class>
+		<class>jvtCasalDonaEJB.constants.DerivacionEntitat</class>
+		<class>jvtCasalDonaEJB.constants.EstatCivil</class>
+		<class>jvtCasalDonaEJB.constants.NivellFormacio</class>
+		<class>jvtCasalDonaEJB.constants.Professio</class>
+		<class>jvtCasalDonaEJB.constants.ServeiAtencio</class>
+		<class>jvtCasalDonaEJB.constants.SituacioEconomica</class>
+		<class>jvtCasalDonaEJB.constants.SituacioLaboral</class>
+		<class>jvtCasalDonaEJB.constants.Tramitacio</class>
+		<class>jvtCasalDonaEJB.constants.UnitatConvivenca</class>
+		<class>jvtCasalDonaEJB.ViolenciaViscuda</class>
+		<class>jvtCasalDonaEJB.SolicitantAmbitViolencia</class>
+		<class>jvtCasalDonaEJB.SolicitantViolenciaViscuda</class>
+		
+		<!--
+		https://docs.oracle.com/javaee/7/api/javax/persistence/SharedCacheMode.html 
+		https://docs.oracle.com/javaee/6/tutorial/doc/gkjjj.html
+		Cal fical @Cacheable(false) a les jpa entitat que no vull que faci cache. Consulta, solicitant, SolicitantAmbitViolencia i solicitantViolenciaViscuda 
+		-->
+		<shared-cache-mode>DISABLE_SELECTIVE</shared-cache-mode> 
+		
+	</persistence-unit>
+</persistence>

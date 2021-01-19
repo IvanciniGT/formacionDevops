@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- jsf:pagecode language="java" location="/src/pagecode/pages/protegides/Principal.java" --><!-- /jsf:pagecode --><ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf" template="/layout/formLayout.xhtml"
+	xmlns:pf="http://primefaces.org/ui">
+	
+	<title>Principal</title>  
+	<h:outputStylesheet library="css" name="stylesheet.css" />
+	<link rel="stylesheet" href="../../resources/css/stylesheet.css" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+	<f:metadata>
+    	<f:viewAction action="#{pc_Principal.onPageLoad}" />
+    </f:metadata>
+	
+	<ui:define name="pageContent">
+
+		<h:form id="form1" styleClass="form">
+			<div align="center">
+				<div id="panelConnexio" class="divConnection">
+					<h:outputFormat id="lblBenvingut" styleClass="outputTextGrey" style="font-size: 18pt" value="{0} {1}">
+						<f:param value="#{ControlSessioUsuari.sessioUsuari.nom}" id="param1"></f:param>
+						<f:param value="#{ControlSessioUsuari.sessioUsuari.cognoms}" id="param2"></f:param>
+					</h:outputFormat>
+					<br /><br />
+					<h:outputFormat id="lblConnexio" styleClass="outputTextGrey" value="Última connexió: {0}">
+							<f:param value="#{ControlSessioUsuari.ultimaConnexio}" id="param3"></f:param>
+					</h:outputFormat>
+				</div>
+				
+				<h:panelGrid columns="2" cellpadding="20" border="0">
+			        <pf:panel id="altaExpedient" header="Alta Expedients" style="margin-bottom:20px" >
+			      		<pf:outputLabel id="lblInfo" styleClass="outputText" value="En aquest apatat podrà donar d'alta els expedients necessaris."></pf:outputLabel>
+						<br/>
+						<pf:link styleClass="link" value="Accedir" id="linkXLS" outcome="/pages/protegides/altaExpedient.xhtml"></pf:link>
+			    	</pf:panel>
+			    	
+			    	 <pf:panel id="cercaExpedient" header="Cerca Expedients" style="margin-bottom:20px">
+			      		<pf:outputLabel id="lblInfo1" styleClass="outputText" value="En aquest apartat podrà cercar i modificar els expedients ja existents"></pf:outputLabel>
+							<br/>
+							<pf:link styleClass="link" value="Accedir" id="linkXML" outcome="/pages/protegides/cercador.xhtml"></pf:link>
+			    	</pf:panel>
+			    	
+			    </h:panelGrid>
+
+			</div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

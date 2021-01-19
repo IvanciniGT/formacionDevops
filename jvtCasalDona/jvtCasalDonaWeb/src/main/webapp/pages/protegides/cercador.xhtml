@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- jsf:pagecode language="java" location="/src/pagecode/pages/protegides/Cercador.java" --><!-- /jsf:pagecode -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/layout/formLayout.xhtml"
+	xmlns:fx="http://java.sun.com/jsf/core"
+	xmlns:pf="http://primefaces.org/ui">
+
+	
+	<link rel="stylesheet" href="../../resources/css/stylesheet.css" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+	<ui:define name="pageContent">
+
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputScript library="js" name="calendar_ca.js" />
+
+		<h:form id="form1" styleClass="form">
+			<pf:growl id="msgs" showDetail="true"
+				skipDetailIfEqualsSummary="true" />
+			<div align="center" class="divPageTitle">
+				<pf:outputLabel id="lblTitol" styleClass="outputTextGrey"
+					style="font-size: 18pt" value="CERCA EXPEDIENTS"></pf:outputLabel>
+			</div>
+
+			<pf:accordionPanel>
+				<pf:tab title="Filtre de Cerca">
+					<pf:panelGrid columns="1" layout="grid"
+						contentStyleClass="p-align-baseline ui-fluid">
+						<h:panelGroup>
+							<pf:outputLabel id="lblNumeroExpedient" styleClass="outputText"
+								value="Número i Any Expedient:"></pf:outputLabel>
+							<h:panelGrid id="grid1" styleClass="panelGrid" columns="3">
+								<pf:inputMask id="txtNumeroExpedient" mask="9?99"
+									styleClass="inputText"
+									value="#{BDadesCercador.numeroExpedient}"></pf:inputMask>
+								<pf:outputLabel id="lblSeparador" styleClass="outputText"
+									value="  /  " style="font-size: 18px !important"></pf:outputLabel>
+								<pf:inputMask id="txtAnyExpedient" mask="9999"
+									styleClass="inputText" value="#{BDadesCercador.anyExpedient}"></pf:inputMask>
+							</h:panelGrid>
+						</h:panelGroup>
+					</pf:panelGrid>
+					<pf:panelGrid columns="4" layout="grid"
+						contentStyleClass="p-align-baseline ui-fluid">
+						<h:panelGroup>
+							<pf:outputLabel id="lblNomCognoms" styleClass="outputText"
+								value="Nom i Cognoms:"></pf:outputLabel>
+							<pf:inputText id="txtNomsCognoms" styleClass="inputText"
+								value="#{BDadesCercador.nomSolicitant}"></pf:inputText>
+						</h:panelGroup>
+						<h:panelGroup>
+							<pf:outputLabel id="lblDataNaix" styleClass="outputText"
+								value="Data Naixement:"></pf:outputLabel>
+							<br />
+							<pf:datePicker id="txtDataNaix"
+								value="#{BDadesCercador.dataNaix}" pattern="dd/MM/yyyy" locale="ca"
+								yearNavigator="true" yearRange="1900:2030"></pf:datePicker>
+							<br />
+						</h:panelGroup>
+						<h:panelGroup>
+							<pf:outputLabel id="lblDataInici" styleClass="outputText"
+								value="Data Inici:"></pf:outputLabel>
+							<br />
+							<pf:datePicker id="txtDataInici"
+								value="#{BDadesCercador.dataInici}" locale="ca"></pf:datePicker>
+							<br />
+						</h:panelGroup>
+						<h:panelGroup>
+							<pf:outputLabel id="lblDataFi" styleClass="outputText"
+								value="Data Fi:"></pf:outputLabel>
+							<br />
+							<pf:datePicker id="txtDataFi" value="#{BDadesCercador.dataFi}"
+								locale="ca"></pf:datePicker>
+							<br />
+						</h:panelGroup>
+					</pf:panelGrid>
+				</pf:tab>
+			</pf:accordionPanel>
+			<br />
+
+			<pf:commandButton value="Cerca Expedients" id="btnCerca"
+				style="margin-right:20px;padding-left:10px;" icon="fa fa-search"
+				action="#{pc_Cercador.btnCercaExpedientsAction}"
+				onclick="PF('statusDialog').show();"
+				oncomplete="PF('statusDialog').hide();" update="form1" />
+			<pf:commandButton value="Neteja" id="btnNeteja" ajax="false"
+				style="margin-right:20px;padding-left:10px;" icon="fa fa-eraser"
+				action="#{pc_Cercador.btnNetejaAction}" update="form1"/>
+
+
+			<br />
+			<br />
+			<br />
+			<h:panelGroup id="group1" styleClass="panelGroup"
+				rendered="#{BDadesCercador.panelLlistaSolicitants}">
+				<pf:dataTable var="varllistaSolicitants"
+					value="#{BDadesCercador.llistaSolicitants}"
+					style="margin-bottom:40px"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+					rows="10" paginator="true" paginatorPosition="bottom"
+					currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registres"
+					emptyMessage="Cap registre trobat pel criteri de cerca.">
+					<f:facet name="header">
+		            Llista d'Expedients 
+		        </f:facet>
+					<pf:column style="width:20px;text-align: center">
+						<pf:commandButton icon="fa fa-search" title="View"
+							action="#{pc_Cercador.btnSeleccionaExpedientAction}"
+							onclick="PF('statusDialog').show();"
+							oncomplete="PF('statusDialog').hide();">
+							<f:setPropertyActionListener value="#{varllistaSolicitants}"
+								target="#{BDadesCercador.solicitantSeleccionat}" />
+						</pf:commandButton>
+					</pf:column>
+					<pf:column headerText="Numero Expedient"
+						sortBy="#{varllistaSolicitants.nExpedient}">
+						<h:outputFormat id="numeroExpedient" styleClass="outputFormat"
+							value="{0}/{1}">
+							<f:param value="#{varllistaSolicitants.nExpedient}" id="param1"></f:param>
+							<f:param value="#{varllistaSolicitants.anyExpedient}" id="param2"></f:param>
+						</h:outputFormat>
+					</pf:column>
+
+					<pf:column headerText="Nom i Cognoms"
+						sortBy="#{varllistaSolicitants.nomcognoms}">
+						<pf:outputLabel value="#{varllistaSolicitants.nomcognoms}"
+							styleClass="outputText" />
+					</pf:column>
+
+					<pf:column headerText="Data Naixament"
+						sortBy="#{varllistaSolicitants.datanaix}">
+						<pf:outputLabel value="#{varllistaSolicitants.datanaix}"
+							styleClass="outputText">
+							<f:convertDateTime dateStyle="short"></f:convertDateTime>
+						</pf:outputLabel>
+					</pf:column>
+
+					<pf:column headerText="Telèfon"
+						sortBy="#{varllistaSolicitants.telefon}">
+						<pf:outputLabel value="#{varllistaSolicitants.telefon}"
+							styleClass="outputText" />
+					</pf:column>
+
+					<pf:column headerText="Usuari"
+						sortBy="#{varllistaSolicitants.usuari}">
+						<pf:outputLabel value="#{varllistaSolicitants.usuari}"
+							styleClass="outputText" />
+					</pf:column>
+
+					<pf:column headerText="Canal Entrada"
+						sortBy="#{varllistaSolicitants.canalentrada}">
+						<pf:outputLabel value="#{varllistaSolicitants.canalentrada}"
+							styleClass="outputText" />
+					</pf:column>
+
+					<pf:column headerText="Data Alta"
+						sortBy="#{varllistaSolicitants.dataAlta}">
+						<pf:outputLabel value="#{varllistaSolicitants.dataAlta}"
+							styleClass="outputText">
+							<f:convertDateTime dateStyle="short"></f:convertDateTime>
+						</pf:outputLabel>
+					</pf:column>
+
+					<pf:column headerText="Enviament a Hestia"
+						sortBy="#{varllistaSolicitants.trasllatHestia}">
+						<pf:outputLabel value="#{varllistaSolicitants.trasllatHestia}"
+							styleClass="outputText" />
+					</pf:column>
+					
+				</pf:dataTable>
+
+			</h:panelGroup>
+
+			<pf:dialog widgetVar="statusDialog" modal="true" showHeader="false"
+				closable="false" width="250" resizable="false">
+				<h4 align="center">
+					<i class="fa fa-spinner"
+						style="font-size: 28px; color: #dc404b; margin-left: 15px; float: left;"></i>
+					<pf:outputLabel value="Esperi si us plau..."
+						styleClass="outputTextGrey" />
+				</h4>
+			</pf:dialog>
+
+
+		</h:form>
+	</ui:define>
+</ui:composition>

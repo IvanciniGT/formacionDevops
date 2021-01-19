@@ -1,0 +1,616 @@
+/********************************
+ *	Faces Components Stylesheet *
+ ********************************/
+
+/* Styles for groups */
+
+/* 
+**************************
+CSS per al menú lateral 
+**************************
+*/
+
+.sidebar {
+  height: 100%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #404040;
+  overflow-x: hidden;
+  padding-top: 16px;
+}
+
+/* Style sidebar links */
+.sidebar a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #8c8c8c;
+  display: block;
+  font-family: "Open Sans","Helvetica Neue",sans-serif;;
+  /*font-family:"Open Sans","Helvetica Neue",sans-serif;*/
+
+}
+
+
+/* Style links on mouse-over */
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar label {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #8c8c8c;
+  display: block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+  position: absolute;
+  bottom: 10px;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+/*
+*******************************
+CSS pel contingut principal
+*******************************
+*/
+
+
+/* Style the main content for sidebar*/
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+ 
+}
+
+
+/* Style the main content for sidebar*/
+.mainLogin {
+  padding: 10px;
+  margin: auto;
+  text-align: center;
+}
+
+
+/* Estil del formulari principal amb fons gris*/
+
+.form {
+  background-color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+
+.divConnection {
+	margin: 10px;
+	padding: 10px;
+	text-align: center;
+}
+
+.divPageTitle {
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+
+/* Styles for controls */
+
+.commandLink {
+  padding: 5px 5px 5px 0;
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;;
+  font-size: 14px;
+   color: #dc404b;
+}
+
+.outputLink {
+  padding: 5px 5px 5px 0;
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;;
+  font-size: 14px;
+   color: #dc404b;
+}
+
+.link {
+  padding: 5px 5px 5px 0;
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;;
+  font-size: 14px;
+  color: #dc404b;
+}
+
+.graphicImage {
+}
+
+.outputLabel {
+  padding: 5px 5px 5px 0;
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;;
+  font-size: 13px;
+}
+
+.outputLabelRed {
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;;
+  color: #dc404b;
+  font-size: 16px !important;
+  float:left;
+
+}
+
+.inputText {
+  width: 100%;
+  margin: 2px;
+  padding: 2px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;;
+  font-size: 13px !important;
+}
+
+
+.inputFile {
+ 	width: 70%;
+}
+
+.inputText_Error {
+	border-style: solid;
+	border-color: #DE5C5C;
+}
+
+.inputTextarea {
+  width: 100%;
+  margin: 2px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+   font-size: 13px;
+}
+
+.inputSecret {
+  width: 100%;
+   margin: 2px;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+   margin: 2px;
+}
+
+.inputHidden {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+}
+
+.outputText {
+  padding: 3px 3px 3px 0;
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 13px !important;
+}
+
+.outputTextWhite {
+  padding: 5px 5px 5px 0;
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+  color: white;
+  font-size: 15px;
+  background-color: gray;
+}
+
+.outputTextGrey {
+	font-family:"Open Sans","Helvetica Neue",sans-serif;
+  	font-size: 16px;
+ 	color: #818181;
+ 	padding: 5px 5px 5px 5px;
+}
+
+.outputTextRed {
+	font-family:"Open Sans","Helvetica Neue",sans-serif;
+  	font-size: 15px;
+  	color: #dc404b;
+ 	padding: 5px 5px 5px 5px;
+}
+
+.outputTextTitleRed {
+  padding: 20px 20px 20px 20px;
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+  color: #dc404b;
+  font-size: 32px;
+  align: left;
+}
+
+.outputFormat {
+  padding: 5px 5px 5px 0;
+  display: inline-block;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 13px;
+}
+
+.commandButton {
+	margin: 5px;
+}
+
+.button {
+	margin: 5px;
+}
+
+.message {
+}
+
+.messages {
+}
+
+.selectBooleanCheckbox {
+}
+
+.selectBooleanCheckbox_Error {
+}
+
+.selectOneRadio {
+}
+
+.selectOneRadio_Error {
+}
+
+.selectOneRadio_Disabled {
+	color: GrayText;
+}
+
+.selectManyCheckbox {
+}
+
+.selectManyCheckbox_Error {
+}
+
+.selectManyCheckbox_Disabled {
+	color: GrayText;
+}
+
+.selectOneListbox {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 13px;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+}
+
+.selectOneListbox_Error {
+}
+
+.selectManyListbox {
+}
+
+.selectManyListbox_Error {
+}
+
+.selectOneMenu {
+  width: 100%;
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  font-size: 13px;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+}
+
+.selectOneMenu_Error {
+}
+
+.selectManyMenu {
+}
+
+.selectManyMenu_Error {
+}
+
+.panelGroup {
+}
+
+.panelGrid {
+	border=none;
+	text-align: center;
+}
+
+.panelGrid td{
+	vertical-align: top;
+	cellpadding=5px;
+	cellspacing=25px;
+}
+
+.dataTable {
+	empty-cells:show;
+}
+
+.headerClass {
+	background-color: ThreeDFace;
+	color: WindowText;
+	border-width: 1px;
+	border-style: solid;
+	border-color: ThreeDShadow;
+	margin:2px;
+	padding:0px;
+	padding-left:4pt;
+	padding-right:4pt;
+	padding-bottom:2px;
+	font-weight: 400;
+	overflow: -moz-scrollbars-none;
+}
+
+.footerClass {
+	background-color: ThreeDFace;
+	color: WindowText;
+	border-width: 0px;
+	border-style: none;
+	padding:0px;
+	padding-left:4pt;
+	padding-right:4pt;
+	font-weight: 400;
+	overflow: -moz-scrollbars-none;
+}
+
+.rowClass1 {
+	background-color: window;
+}
+
+.rowClass2 {
+	background-color: ThreeDFace;
+}
+
+.columnClass1 {
+	background-color: window;
+	margin:2px;
+	padding:0px;
+	padding-left:4pt;
+	padding-right:4pt;
+	padding-bottom:2px;
+	overflow: -moz-scrollbars-none;
+}
+
+.columnClass2 {
+	background-color: ThreeDFace;
+	margin:2px;
+	padding:0px;
+	padding-left:4pt;
+	padding-right:4pt;
+	padding-bottom:2px;	
+}
+
+
+.logo {
+	font-family:"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 18px;
+ 	color: #818181;
+ 	position: absolute;
+  right: 0px;
+  padding-right:25pt;
+}
+
+
+
+/*
+**********************************************************************
+RESPONSIVE
+Modifiquem el menu lateral i el main segons el tamany de la finestra
+**********************************************************************
+*/
+
+@media screen and (max-width: 1050px) {
+	.logo {
+		visibility: hidden;
+	}
+	
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    
+  }
+  
+  
+  .sidebar a {float: left;}
+  
+  div.content {margin-left: 0;}
+  
+  .main {
+    margin-left: 00px; /* Same as the width of the sidenav */
+    padding: 0px 10px;
+  }
+  
+  .outputTextTitleRed {
+	  padding: 20px 20px 20px 20px;
+	  display: inline-block;
+	  font-family:"Open Sans","Helvetica Neue",sans-serif;
+	  color: #dc404b;
+	  font-size: 24px;
+  }
+  
+  .logo {
+	   visibility: hidden;
+	}
+	
+	 .sidebar label {
+      visibility: hidden;
+  }
+}
+
+/* SIDEBAR RESPONSIVE */
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+  
+  .outputTextTitleRed {
+    padding: 20px 20px 20px 20px;
+    display: inline-block;
+    font-family:"Open Sans","Helvetica Neue",sans-serif;
+    color: #dc404b;
+    font-size: 24px;
+  }
+  
+  .logo {
+	visibility: hidden;
+  }
+  .sidebar label {
+  visibility: hidden;
+  }
+}
+
+
+
+/*
+******************************************
+******************************************
+
+Definim el css per components primefaces
+
+******************************************
+******************************************
+*/
+
+
+/* CSS panel Grid */
+
+body .ui-panelgrid .ui-panelgrid-content {
+	border:none !important; 
+	background-color: transparent !important;
+}
+
+body .ui-panelgrid .ui-panelgrid-cell {
+	padding: 5px 5px 5px 5px !important;
+}
+
+body .ui-panel .ui-panel-titlebar {
+	background-color: #404040 !important;
+	border-color: #404040 !important;
+	color: white !important;
+  	font-size: 16px !important;
+  	font-family: "Open Sans","Helvetica Neue",sans-serif !important;
+  	text-align:left;
+}
+
+body .ui-datatable .ui-datatable-data > tr.ui-state-highlight {
+	background-color: #404040 !important;
+}
+
+body .ui-datatable thead th.ui-state-active {
+	background-color: #c32a2a !important;
+}
+
+/* CSS canviar el color de la tab seleccionada del acordeo */
+body .ui-accordion .ui-accordion-header.ui-state-active {
+	/*background-color: #c32a2a !important;*/
+	background-color: #404040 !important;
+	border-color: #404040 !important;
+}
+
+
+/* Afegim un marge a les tabs del acordeo */
+body .ui-accordion .ui-accordion-header{
+	margin-top:15px !important;
+}
+
+/* CSS canviar el color del radiobutton seleccionat */
+body .ui-radiobutton .ui-radiobutton-box.ui-state-active  {
+	background-color: #c32a2a !important;
+	border: #c32a2a !important;
+}
+body .ui-chkbox .ui-chkbox-box .ui-chkbox-icon.ui-icon-check {
+	background-color: #c32a2a !important;
+	border: #c32a2a !important;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+	background-color: #c32a2a !important;
+	border: #c32a2a !important;
+}
+
+/* CSS canviar el color quan actives els texts i els desplegables */
+body .ui-inputfield:focus {
+	 border-color: #c32a2a !important;
+}
+
+body .ui-selectonemenu.ui-state-focus {
+	border-color: #c32a2a !important;
+}
+
+
+
+/* CSS canviar el color del desplegable seleccionat */
+body .ui-selectonemenu-panel .ui-selectonemenu-items .ui-selectonemenu-item.ui-state-highlight {
+	background-color: #c32a2a !important;
+}
+
+
+/* Cambiem el color dels botons */
+body .ui-button {
+	background-color: #c32a2a !important;
+	border: #c32a2a !important;
+}
+
+/* Cambiem el color dels botons de les taules de dades*/
+
+body .ui-button.ui-button-icon-only {
+background-color: transparent !important;
+	border: transparent !important;
+	color: gray;
+	border: none;
+}
+
+body .ui-button.ui-button-icon-only.ui-state-hover {
+background-color: transparent !important;
+	border: transparent !important;
+	color: #212121 !important;
+	border: none;
+}
+
+
+/* Definim estil per la taula de dades */
+
+body .ui-datatable .ui-datatable-header, body .ui-datatable .ui-datatable-footer {
+	background-color: #404040 !important;
+	border-color: #404040 !important;
+	color:white !important;
+}
+
+body .ui-datatable .ui-datatable-data > tr > td {
+	padding: 3px 3px 3px 3px !important;
+}
+
+body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+	background-color: #c32a2a !important;
+}
+
+body .ui-dialog .ui-dialog-titlebar {
+  padding: 10px 15px;
+  /*background-color: #dc404b;*/
+  background: linear-gradient(to top, #cccccc 0%, #ffffff 80%);
+  /*color: white;*/
+  color: #dc404b;
+  font-family:"Open Sans","Helvetica Neue",sans-serif;
+  font-size: 20px;
+}
+

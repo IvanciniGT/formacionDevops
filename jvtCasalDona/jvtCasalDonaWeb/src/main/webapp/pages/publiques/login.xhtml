@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- jsf:pagecode language="java" location="/src/pagecode/pages/publiques/Login.java" --><!-- /jsf:pagecode -->
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/layout/loginLayout.xhtml"
+	xmlns:pf="http://primefaces.org/ui">
+
+	<title>Login</title>
+	
+	<link rel="stylesheet" type="text/css" title="Style"
+		href="../../resources/css/stylesheet.css" />
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<ui:define name="pageContent">
+
+		<form id="form1" action="../../DoLogin" method="post">
+			<div class="form" align="center">
+				<br /> <br />
+
+				<pf:panel id="accesAplicacio" header="Accés a l'aplicació"
+					style="margin-bottom:20px; width:40%;min-width:200px;max-width:350px;">
+					<h:panelGrid columns="2" cellpadding="15" border="0">
+
+						<i class="fa fa-user-circle-o"
+							style="color: #818181; font-size: 65px;"></i>
+						<h:panelGroup>
+							<input type="text" placeholder="Usuari" name="usuari"
+								jsf:styleClass="inputText" />
+							<br />
+							<input type="password" placeholder="Clau d'accés" name="password"
+								jsf:styleClass="inputText" />
+						</h:panelGroup>
+
+					</h:panelGrid>
+
+				</pf:panel>
+				<button type="submit"
+					class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+					<span class="ui-button-text">Login</span>
+				</button>
+
+				<br />
+				<br />
+				<pf:outputLabel id="text1" styleClass="outputText"
+					value="#{sessionScope.loginError}"></pf:outputLabel>
+			</div>
+
+		</form>
+	</ui:define>
+</ui:composition>

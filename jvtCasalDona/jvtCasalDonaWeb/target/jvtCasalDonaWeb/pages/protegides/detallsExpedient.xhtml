@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8" ?><!-- jsf:pagecode language="java" location="/src/pagecode/pages/protegides/DetallsExpedient.java" --><!-- /jsf:pagecode -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/layout/formLayout.xhtml"
+	xmlns:fx="http://java.sun.com/jsf/core"
+	xmlns:h1="http://java.sun.com/jsf/html"
+	xmlns:pf="http://primefaces.org/ui">
+
+
+	<link rel="stylesheet" href="../../resources/css/stylesheet.css" type="text/css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+	
+	
+	<f:metadata>
+		<f:viewAction action="#{pc_DetallsExpedient.onPageLoadAction}" /> 
+	 </f:metadata>
+	
+	
+	
+	<ui:define name="pageContent">
+	
+		<h:outputStylesheet library="css" name="stylesheet.css" />
+		<h:outputScript library="js" name="calendar_ca.js" />
+		
+		<h:form id="form1" styleClass="form">
+			
+			<div align="center" class="divPageTitle">
+				<h:outputFormat id="lblTitol" styleClass="outputTextGrey" style="font-size: 18pt" value="EXPEDIENT NÚMERO {0}/{1}">
+					<f:param value="#{BDadesExpedient.solicitant.nExpedient}" id="param3"></f:param>
+					<f:param value="#{BDadesExpedient.solicitant.anyExpedient}" id="param2"></f:param>
+				</h:outputFormat>
+			</div>
+			
+			<pf:accordionPanel multiple="true" >
+	        		<pf:tab title="Dades Adminstratives">
+		        		<pf:panelGrid columns="3" layout="grid" contentStyleClass="p-align-baseline ui-fluid">
+						 <h:panelGroup>
+						 	<pf:outputLabel id="lblNomCognoms" styleClass="outputText" value="Nom i Cognoms:"></pf:outputLabel>
+						 	<pf:inputText id="txtNomCognoms" styleClass="inputText"  value="#{BDadesExpedient.solicitant.nomcognoms}"></pf:inputText>
+						 </h:panelGroup>
+						
+						 <h:panelGroup>
+						 	<pf:outputLabel id="lblTelefon" styleClass="outputText" value="Número de Telèfon:"></pf:outputLabel>
+							<pf:inputMask id="txtNumeroTelefon" mask="999999999" styleClass="inputText" value="#{BDadesExpedient.solicitant.telefon}"></pf:inputMask>
+						 </h:panelGroup>
+						
+						 <h:panelGroup>
+						 	<pf:outputLabel id="lblDataNaix" styleClass="outputText" value="Data Naixement:"></pf:outputLabel>
+						 	<br/><pf:datePicker id="txtDataNaix" value="#{BDadesExpedient.solicitant.datanaix}" locale="ca"  yearNavigator="true" yearRange="1900:2030"></pf:datePicker>
+						 </h:panelGroup>
+						 
+						 <h:panelGroup>
+							 <pf:outputLabel id="lblCanalEntrada" styleClass="outputText" value="Canal Entrada:"></pf:outputLabel><br/>
+							 <pf:selectOneMenu id="menuCanalEntrada" style="width=100%;" value="#{BDadesExpedient.solicitant.canalentrada}">
+								<f:selectItems value="#{BDadesExpedient.llistatCanalsEntrada}" id="selectItemsCanalEntrada"></f:selectItems>
+							 </pf:selectOneMenu>	
+						 </h:panelGroup>
+						 
+						 <h:panelGroup>
+						  	<pf:outputLabel id="lblHestia" styleClass="outputText" value="Enviament a Hestia:"></pf:outputLabel><br/>
+						  	<pf:selectOneMenu id="menuHestia" style="width=100%;" value="#{BDadesExpedient.solicitant.trasllatHestia}">
+								<f:selectItem itemLabel="NO" id="selectItemHestiaNo" itemValue="N"></f:selectItem>
+								<f:selectItem itemLabel="SI" id="selectItemHestiaSi" itemValue="S"></f:selectItem>
+							</pf:selectOneMenu>
+						</h:panelGroup>
+					</pf:panelGrid>
+        		</pf:tab>
+        		<pf:tab title="Dades Personals">
+	        		<pf:panelGrid columns="3" layout="grid" contentStyleClass="p-align-baseline ui-fluid">
+	        			<h:panelGroup>
+		        			<pf:outputLabel id="lblPaisOrigen" styleClass="outputText" value="País Origen:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuPaisOrigen" style="width=100%;" value="#{BDadesExpedient.solicitant.paisorigen}">
+								<f:selectItems value="#{BDadesExpedient.llistaPaisos}" id="selectItemsPaisos"></f:selectItems>
+							</pf:selectOneMenu >						
+	        			</h:panelGroup>
+
+						<h:panelGroup>
+							<pf:outputLabel id="lblDemarcacio" styleClass="outputText"
+								value="Demarcació Territorial:"></pf:outputLabel>
+							<pf:selectOneMenu id="menuProvincies" style="width=100%;"
+								value="#{BDadesExpedient.solicitant.demarcacio}">
+									<pf:ajax update="menuCiutats"
+									listener="#{pc_DetallsExpedient.menuSeleccionaProvincia}" />
+								<f:selectItems value="#{BDadesExpedient.llistaProvincies}"
+									id="selectItemsProvincies"></f:selectItems>
+							</pf:selectOneMenu>
+						</h:panelGroup>
+
+						<h:panelGroup>
+	        				<pf:outputLabel id="lblPoblacio" styleClass="outputText" value="Població:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuCiutats" style="width=100%;" value="#{BDadesExpedient.solicitant.poblacio}">
+								<f:selectItems value="#{BDadesExpedient.llistaCiutats}" id="selectItemsCiutats"></f:selectItems>
+							</pf:selectOneMenu >
+	        			</h:panelGroup>
+	        			
+	        			<h:panelGroup>
+		        			<pf:outputLabel id="lblComarca" styleClass="outputText" value="Comarca:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuComarques"  style="width=100%;" value="#{BDadesExpedient.solicitant.comarca}">
+								<f:selectItems value="#{BDadesExpedient.llistaComarques}" id="selectItemsComarques"></f:selectItems>
+							</pf:selectOneMenu >
+	        			</h:panelGroup>
+
+	        			<h:panelGroup>
+	        				<pf:outputLabel id="lblCP" styleClass="outputText" value="Codi Postal:"></pf:outputLabel>
+							<pf:inputMask id="txtCP" mask="99999" styleClass="inputText" value="#{BDadesExpedient.solicitant.cp}"></pf:inputMask>
+	        			</h:panelGroup>
+	        			
+	        			<h:panelGroup>
+	        				<pf:outputLabel id="lblBarri" styleClass="outputText" value="Barri:"></pf:outputLabel>
+							<pf:inputText id="txtBarri" styleClass="inputText" value="#{BDadesExpedient.solicitant.barri}"></pf:inputText>
+	        			</h:panelGroup>
+	        			
+	        			<h:panelGroup>
+		        			<pf:outputLabel id="lblSexe" styleClass="outputText" value="Sexe:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuSexe" style="width=100%;" value="#{BDadesExpedient.solicitant.sexe}">
+								<f:selectItems value="#{BDadesExpedient.llistatSexe}" id="selectItemsSexe"></f:selectItems>
+							</pf:selectOneMenu >
+	        			</h:panelGroup>
+	        			
+	        			<h:panelGroup>
+		        			<pf:outputLabel id="lblEstatCivil" styleClass="outputText" value="Estat Civil:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuEstatCivil" style="width=100%;" value="#{BDadesExpedient.solicitant.estatcivil}">
+								<f:selectItems value="#{BDadesExpedient.llistatEstatCivil}" id="selectItemsEstatCivil"></f:selectItems>
+							</pf:selectOneMenu >
+	        			</h:panelGroup>
+	        			
+	        			<h:panelGroup>
+		        			<pf:outputLabel id="lblUnitatConvivencia" styleClass="outputText" value="Unitat de Convivència:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuUnitatConvivencia" style="width=100%;" value="#{BDadesExpedient.solicitant.unitatconvivencia}">
+								<f:selectItems value="#{BDadesExpedient.llistatUnitatConvivencia}" id="selectItemsUnitatConvivencia"></f:selectItems>
+							</pf:selectOneMenu >
+	        			</h:panelGroup>
+	        			
+	        			<h:panelGroup>
+		        			<pf:outputLabel id="lblSituacioLaboral" styleClass="outputText" value="Situació Laboral:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuSituacioLaboral" style="width=100%;" value="#{BDadesExpedient.solicitant.situaciolaboral}">
+								<f:selectItems value="#{BDadesExpedient.llistatSituacioLaboral}" id="selectItemsSituacioLaboral"></f:selectItems>
+							</pf:selectOneMenu >
+	        			</h:panelGroup>
+	        		
+	        			<h:panelGroup>
+	        				<pf:outputLabel id="lblProfessio" styleClass="outputText" value="Professió:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuProfessio" style="width=100%;" value="#{BDadesExpedient.solicitant.professio}">
+								<f:selectItems value="#{BDadesExpedient.llistatProfessio}" id="selectItemsProfessio"></f:selectItems>
+							</pf:selectOneMenu >
+	        			</h:panelGroup>
+	        		</pf:panelGrid>
+        		</pf:tab>
+        		<pf:tab title="Dades Formació i Econòmiques">
+	        		<pf:panelGrid columns="2" layout="grid" contentStyleClass="p-align-baseline ui-fluid" sttyle="width=100%;">
+	        			<pf:panelGrid columns="2" layout="grid" contentStyleClass="p-align-baseline ui-fluid" sttyle="width=100%;">
+	        			<f:facet name="header">
+	        				<i class="fa fa-graduation-cap fa-fw" style="font-size: 18px; color: #dc404b; margin-right: 10px; float:left;"></i>
+		        			<pf:outputLabel id="lblFormacio" styleClass="outputLabelRed" value="Formació"></pf:outputLabel>
+		        			<br/><hr  size="1" color="gray"/>
+		   				 </f:facet>
+		        			<h:panelGroup>
+		        				<pf:outputLabel id="lblNivellFormacio" styleClass="outputText" value="Nivell Formació:"></pf:outputLabel>
+								<pf:selectOneMenu  id="menuNivellFormacio" style="width=100%;" value="#{BDadesExpedient.solicitant.nivellformacio}">
+									<f:selectItems value="#{BDadesExpedient.llistatNivellFormacio}" id="selectItemsNivellFormacio"></f:selectItems>
+								</pf:selectOneMenu >
+		        			</h:panelGroup>
+		        			<h:panelGroup>
+		        				<pf:outputLabel id="lblHomologadaEE" styleClass="outputText" value="Homologada a l'EE:"></pf:outputLabel>
+								<pf:selectOneRadio disabledClass="selectOneRadio_Disabled" enabledClass="selectOneRadio_Enabled" id="radioHomologadaEE" styleClass="selectOneRadio" value="#{BDadesExpedient.solicitant.formaciohomologada}">
+										<f:selectItem itemLabel="No" id="selectItemHomologadaNo" itemValue="N"></f:selectItem>
+										<f:selectItem itemLabel="Si" id="selectItemHomologadaSi" itemValue="S"></f:selectItem>
+								</pf:selectOneRadio>
+							</h:panelGroup>
+		        			        			
+		        		</pf:panelGrid>
+		        		<pf:panelGrid columns="3" layout="grid" contentStyleClass="p-align-baseline ui-fluid" sttyle="width=100%;">
+		        			<f:facet name="header">
+		        				<i class="fa fa-money fa-fw" style="font-size: 18px; color: #dc404b; margin-right: 10px; float:left;"></i>
+		        				<pf:outputLabel id="lblEconomiques" styleClass="outputLabelRed" value="Econòmiques"></pf:outputLabel>
+		        			<br/><hr  size="1" color="gray"/>
+		   				 	</f:facet>
+		        			<h:panelGroup>
+		        				<pf:outputLabel id="lblSituacioEconomica" styleClass="outputText" value="Situació Econòmica:"></pf:outputLabel>
+									<pf:selectOneMenu  id="menuSituacioEconomica" style="width=100%;" value="#{BDadesExpedient.solicitant.situacioeconomica}">
+										<f:selectItems value="#{BDadesExpedient.llistatSituacioEconomica}" id="selectItemsSituacioEconomica"></f:selectItems>
+									</pf:selectOneMenu >
+		        			</h:panelGroup>
+		        			
+		        			<h:panelGroup>
+		        				<pf:outputLabel id="lblRepPrestacio" styleClass="outputText" value="Rep Prestació:"></pf:outputLabel>
+								<pf:selectOneRadio disabledClass="selectOneRadio_Disabled" enabledClass="selectOneRadio_Enabled" id="radioRepPrestacio" styleClass="selectOneRadio" value="#{BDadesExpedient.solicitant.repprestacions}">
+									<f:selectItem itemLabel="No" id="selectItemPrestacioNo" itemValue="N" styleClass="outputText"></f:selectItem>
+									<f:selectItem itemLabel="Si" id="selectItemPrestacioSi" itemValue="S" styleClass="outputText"></f:selectItem>
+								</pf:selectOneRadio>
+		        			</h:panelGroup>
+		        			
+		        			<h:panelGroup>
+		        				<pf:outputLabel id="lblPrestacio" styleClass="outputText" value="Prestació:"></pf:outputLabel>
+								<pf:inputText id="txtPrestacio" styleClass="inputText" value="#{BDadesExpedient.solicitant.prestacio}"></pf:inputText>
+		        			</h:panelGroup>        			
+		        		</pf:panelGrid>
+		        	</pf:panelGrid>
+        		</pf:tab>
+        		
+        		<pf:tab title="Dades Violència">
+	        		<pf:panelGrid columns="2" layout="grid" contentStyleClass="p-align-baseline ui-fluid">
+		        		<pf:panelGrid columns="1" layout="grid" contentStyleClass="p-align-baseline ui-fluid">
+			        		<f:facet name="header">
+			        			<pf:outputLabel id="lblAmbitViolenciaTitle" styleClass="outputLabelRed" value="Àmbit Violència"></pf:outputLabel>
+			        			<br/><hr  size="1" color="gray"/>
+			   				 </f:facet>
+	        				 <pf:selectManyCheckbox id="gridAmbitViolencia"  layout="responsive" columns="2"  value="#{BDadesExpedient.ambitViolenciaSeleccionats}">
+	        					 <f:selectItems value="#{BDadesExpedient.llistatAmbitViolencia}" />
+	        				 </pf:selectManyCheckbox>
+		        		</pf:panelGrid>
+	        			<pf:panelGrid columns="1" layout="grid" contentStyleClass="p-align-baseline ui-fluid">
+			        		<f:facet name="header">
+			        			<pf:outputLabel id="lblViolenciaViscudaTitle" styleClass="outputLabelRed" value="Violència Viscuda"></pf:outputLabel>
+			        			<br/><hr size="1" color="gray"/>
+			   				 </f:facet>
+	        				 <pf:selectManyCheckbox id="gridViolenciaViscuda"  layout="responsive" columns="3"  value="#{BDadesExpedient.violenciaViscudaSeleccionats}">
+	        				 	<f:selectItems value="#{BDadesExpedient.llistatViolenciaViscuda}" />
+	        				 </pf:selectManyCheckbox>
+	        			</pf:panelGrid>
+	        		</pf:panelGrid>
+        		</pf:tab>
+ 
+        	</pf:accordionPanel>
+        	<br /><br />
+			<pf:commandButton value="Desar Canvis" id="btnModificaExpedient" style="margin-right:20px;padding-left:10px;" icon="fa fa-save" action="#{pc_DetallsExpedient.btnModificaAction}" update="message">
+				<pf:confirm header="Edita Expedient" message="Està segur que desitja guardar el canvis a l'expedient?" icon="pi pi-exclamation-triangle" />
+			</pf:commandButton>
+			<pf:commandButton value="Elimina Expedient" id="btnEliminaExpedient" style="margin-right:20px;padding-left:10px;" icon="fa fa-trash-o" action="#{pc_DetallsExpedient.btnEliminaExpedientAction}" update="message">
+				<pf:confirm header="Elimina Expedient" message="Està segur que desitja eliminar l'expedient?" icon="pi pi-exclamation-triangle" />
+			</pf:commandButton>
+			<pf:commandButton value="Afegeix Consulta" id="btnNovaConsulta" style="margin-right:20px;padding-left:10px;" icon="fa fa-plus" onclick="PF('dialogConsulta').show();"/>
+			<pf:commandButton value="Desfer" id="btnDesfer" style="margin-right:20px;padding-left:10px;" icon="fa fa-undo" action="#{pc_DetallsExpedient.btnDesferAction}"  update="form1" process="@this"/>
+			<pf:commandButton value="Enrera" id="btnEnrera" style="margin-right:20px;padding-left:10px;" icon="fa fa-mail-reply" action="#{pc_DetallsExpedient.btnEnreraAction}"/>
+			<br /><br />
+			
+			
+			<pf:dataTable id="dataTableConsultes" var="varllistaConsultes" value="#{BDadesExpedient.solicitant.consultas}" style="margin-bottom:40px" 
+			   		paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+               		rows="10" paginator="true" paginatorPosition="bottom"
+               		currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registres"
+               		emptyMessage="Cap consulta associada a l'espedient"
+               		editable="true">
+				<f:facet name="header">
+		            Llista de Consultes 
+		        </f:facet>
+		        
+		        <pf:ajax event="rowEditInit" listener="#{pc_DetallsExpedient.onRowEditaIniciAction}"  update="menuAreaConsultaTaula"/>
+		        <pf:ajax event="rowEdit" listener="#{pc_DetallsExpedient.onRowEditaConsultaAction}" update="message"/>
+        		<pf:ajax event="rowEditCancel" listener="#{pc_DetallsExpedient.onRowCancelaConsultaAction}" update="message" />
+		        
+		         <pf:column style="width:20px;text-align: center">
+		             <pf:commandButton icon="fa fa-trash" title="Elimina" action="#{pc_DetallsExpedient.btnEliminaConsultaAction}" update="dataTableConsultes message">
+		                <f:setPropertyActionListener value="#{varllistaConsultes}" target="#{BDadesExpedient.consultaSeleccionada}" />
+		                <pf:confirm header="Elimina Consulta" message="Està segur que desitja eliminar la consulta?" icon="pi pi-exclamation-triangle" />
+		            </pf:commandButton>
+	         	</pf:column>
+
+				<pf:column style="width:20px;text-align: center">
+		            <pf:rowEditor>
+		            
+		            </pf:rowEditor>
+		        </pf:column>
+		      
+				<pf:column headerText="Data">
+					<pf:cellEditor>
+						<f:facet name="output">
+							<pf:outputLabel value="#{varllistaConsultes.datacon}" styleClass="outputText">
+								<f:convertDateTime dateStyle="short"></f:convertDateTime>
+							</pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<pf:datePicker id="txtDataConsultaTaula" required="true" requiredMessage="La data de la consulta és obligatoria" value="#{varllistaConsultes.datacon}" locale="ca"></pf:datePicker>
+						</f:facet>
+					</pf:cellEditor>
+				</pf:column>
+				
+				
+				<pf:column headerText="Tramitació" >
+		           <pf:cellEditor>
+						<f:facet name="output"> 
+							<h:outputText value="#{varllistaConsultes.tramitacio}" />
+						</f:facet>
+						<f:facet name="input">
+							<pf:selectOneMenu  id="menuTramitacioTaula" style="width=100%;" value="#{varllistaConsultes.tramitacio}">
+								<f:selectItems value="#{BDadesExpedient.llistatTramitacio}" id="selectItemsTramitacioTaula"></f:selectItems>
+							</pf:selectOneMenu >
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+	        	
+	        	<pf:column headerText="Àrea">
+	        		<pf:cellEditor>
+						<f:facet name="output"> 
+							 <pf:outputLabel value="#{varllistaConsultes.area}"  styleClass="outputText"> </pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<pf:selectOneMenu  id="menuAreaTaula" style="width=100%;" value="#{varllistaConsultes.area}"  valueChangeListener="#{pc_DetallsExpedient.seleccionaAreaEdicio}">
+								<!--  pf:ajax  listener="#{pc_DetallsExpedient.seleccionaArea}" update="menuAreaConsultaTaula" />-->
+								<pf:ajax event="valueChange"  immediate="true" process="@this" update="menuAreaConsultaTaula"/>
+								<f:selectItems value="#{BDadesExpedient.llistatArea}" id="selectItemsAreaTaula"></f:selectItems>
+							</pf:selectOneMenu >
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+	        	
+	        	<pf:column headerText="Àrea Consulta">
+	        		<pf:cellEditor>
+						<f:facet name="output"> 
+							<pf:outputLabel value="#{varllistaConsultes.areaconsulta}"  styleClass="outputText"> </pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<pf:selectOneMenu  id="menuAreaConsultaTaula" style="width=100%;" value="#{varllistaConsultes.areaconsulta}">
+								<f:selectItems value="#{BDadesExpedient.llistatAreaConsulta}" id="selectItemsAreaConsultaTaula"></f:selectItems>
+						</pf:selectOneMenu >
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+	        	
+	        	<pf:column headerText="Servei Atenció">
+	        		<pf:cellEditor>
+						<f:facet name="output"> 
+							 <pf:outputLabel value="#{varllistaConsultes.serveiaten}"  styleClass="outputText"> </pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<pf:selectOneMenu  id="menuServeiAtencioTaula" style="width=100%;" value="#{varllistaConsultes.serveiaten}">
+								<f:selectItems value="#{BDadesExpedient.llistatServeiAtencio}" id="selectItemsServeiAtencioTaula"></f:selectItems>
+							</pf:selectOneMenu >
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+	        	
+	        	<pf:column headerText="Derivació Estat">
+	        		<pf:cellEditor>
+						<f:facet name="output"> 
+							  <pf:outputLabel value="#{varllistaConsultes.derivacioEstat}"  styleClass="outputText"> </pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<pf:selectOneMenu id="menuDerivacionsEstatTaula" style="width=100%;" value="#{varllistaConsultes.derivacioEstat}">
+									<f:selectItems value="#{BDadesExpedient.llistatDerivacioEstat}" id="selectItemsDerivacioEstatTaula"></f:selectItems>
+							</pf:selectOneMenu>	
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+	        	
+	        	<pf:column headerText="Derivació Generalitat" >
+	        		<pf:cellEditor>
+						<f:facet name="output"> 
+							  <pf:outputLabel value="#{varllistaConsultes.derivacioGeneralitat}"  styleClass="outputText"> </pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<pf:selectOneMenu  id="menuDerivacioGeneralitatTaula"  style="width=100%;" value="#{varllistaConsultes.derivacioGeneralitat}">
+									<f:selectItems value="#{BDadesExpedient.llistatDerivacioGeneralitat}" id="selectItemsDerivacionsGeneralitatTaula"></f:selectItems>
+							</pf:selectOneMenu >
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+	        	
+	        	<pf:column headerText="Derivació Entitat">
+	        		<pf:cellEditor>
+						<f:facet name="output"> 
+							   <pf:outputLabel value="#{varllistaConsultes.derivacioEntitat}"  styleClass="outputText"> </pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							 <pf:selectOneMenu id="menuDerivacionsEntitatsTaula" style="width=100%;" value="#{varllistaConsultes.derivacioEntitat}">
+									<f:selectItems value="#{BDadesExpedient.llistatDerivacioEntitat}" id="selectItemsDerivacioEntitatTaula"></f:selectItems>
+							</pf:selectOneMenu>
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+	        	
+	        	<pf:column headerText="Derivació Consell Comarcal">
+	        		<pf:cellEditor>
+						<f:facet name="output"> 
+							   <pf:outputLabel value="#{varllistaConsultes.derivacioConsellComarcal}"  styleClass="outputText"> </pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<pf:selectOneMenu id="menuDerivacionsConsellComarcalTaula" style="width=100%;" value="#{varllistaConsultes.derivacioConsellComarcal}">
+									<f:selectItems value="#{BDadesExpedient.llistatDerivacioConsellComarcal}" id="selectItemsDerivacioConsellComarcalTaula"></f:selectItems>
+							</pf:selectOneMenu>	
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+	        	
+	        	<pf:column headerText="Derivació Interna">
+	        		<pf:cellEditor>
+						<f:facet name="output"> 
+							   <pf:outputLabel value="#{varllistaConsultes.derivacioInterna}"  styleClass="outputText"> </pf:outputLabel>
+						</f:facet>
+						<f:facet name="input">
+							<pf:selectOneMenu  id="menuDerivacionsInternesTaula" style="width=100%;"  value="#{varllistaConsultes.derivacioInterna}">
+									<f:selectItems value="#{BDadesExpedient.llistatDerivacioInterna}" id="selectItemsDerivacioInternesTaula"></f:selectItems>
+							</pf:selectOneMenu>
+						</f:facet>
+					</pf:cellEditor>
+	        	</pf:column>
+			</pf:dataTable>
+			
+			
+			
+			<!-- CODI FINESTRA CONFIRMACIÓ GLOBAL-->
+			<pf:confirmDialog global="true" showEffect="blind" hideEffect="blind">
+			 	<div style="padding: 10px;text-align: center;">
+        			<pf:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+        			<pf:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+        		</div>
+    		</pf:confirmDialog>      
+
+			<!-- CODI FINESTRA NOVA CONSULTA-->
+			<pf:dialog header="Consulta" widgetVar="dialogConsulta" focus="btnCancelaNovaConsulta" modal="true" showEffect="blind" hideEffect="blind" width="50%" height="100%">
+			  <h:panelGroup id="panelNovaConsulta">
+			   <pf:accordionPanel>
+					<pf:tab title="Dades Administratives de la Consulta">
+        			<pf:panelGrid columns="1" layout="grid" contentStyleClass="p-align-baseline ui-fluid" style="width:50%;">
+	        			<h:panelGroup>
+	        				<pf:outputLabel id="lblDataConsulta" for="txtDataConsulta" styleClass="outputText" value="Data Consulta:"></pf:outputLabel>
+							<br/><pf:datePicker id="txtDataConsulta" required="true" requiredMessage="La data de la consulta és obligatoria" value="#{BDadesExpedient.consulta.datacon}" locale="ca"></pf:datePicker><br/>
+			        	</h:panelGroup>
+		        	</pf:panelGrid>
+	        		<pf:panelGrid columns="2" layout="grid" contentStyleClass="p-align-baseline ui-fluid">
+		        		<h:panelGroup>
+		        			<pf:outputLabel id="lblTramitacio" styleClass="outputText" value="Tramitació:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuTramitacio" style="width=100%;" value="#{BDadesExpedient.consulta.tramitacio}">
+								<f:selectItems value="#{BDadesExpedient.llistatTramitacio}" id="selectItemsTramitacio"></f:selectItems>
+							</pf:selectOneMenu >
+		        		</h:panelGroup>
+		        		
+		        		<h:panelGroup>
+			        		<pf:outputLabel id="lblArea" styleClass="outputText" value="Àrea:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuArea" style="width=100%;" value="#{BDadesExpedient.consulta.area}">
+								<pf:ajax listener="#{pc_DetallsExpedient.seleccionaArea}" update="menuAreaConsulta" />
+								<f:selectItems value="#{BDadesExpedient.llistatArea}" id="selectItemsArea"></f:selectItems>
+							</pf:selectOneMenu >
+		        		</h:panelGroup>
+		        		
+		        		<h:panelGroup>
+		        			<pf:outputLabel id="lblServeiAtencio" styleClass="outputText" value="Servei Atenció:"></pf:outputLabel>
+							<pf:selectOneMenu  id="menuServeiAtencio" style="width=100%;" value="#{BDadesExpedient.consulta.serveiaten}">
+								<f:selectItems value="#{BDadesExpedient.llistatServeiAtencio}" id="selectItemsServeiAtencio"></f:selectItems>
+							</pf:selectOneMenu >
+		        		</h:panelGroup>
+		        		
+		        		<h:panelGroup>
+		        		<pf:outputLabel id="lblAreaConsulta" styleClass="outputText"
+							value="Àrea Consulta:"></pf:outputLabel>
+						<pf:selectOneMenu  id="menuAreaConsulta" style="width=100%;" value="#{BDadesExpedient.consulta.areaconsulta}">
+							<f:selectItems value="#{BDadesExpedient.llistatAreaConsulta}" id="selectItemsAreaConsulta"></f:selectItems>
+						</pf:selectOneMenu >
+		        		</h:panelGroup>
+	        			</pf:panelGrid>
+	        		</pf:tab>
+	        		<pf:tab title="Derivacions Internes i Externes de la Consulta">
+	        			<pf:panelGrid columns="2" layout="grid" contentStyleClass="p-align-baseline ui-fluid" sttyle="width=100%;">
+	        				<pf:panelGrid columns="1" layout="grid" contentStyleClass="p-align-baseline ui-fluid" sttyle="width=100%;">
+		        				<f:facet name="header">
+				        				<pf:outputLabel id="lblDerivacionsExternesTitle" styleClass="outputLabelRed" value="Derivacions Externes"></pf:outputLabel>
+				        				<br/><hr  size="1" color="gray"/>
+				   				 </f:facet>
+				   				 
+				   				 <h:panelGroup>
+									 <pf:outputLabel id="lblDerivacionsEstat" styleClass="outputText" value="Derivació Estat:"></pf:outputLabel><br/>
+									 <pf:selectOneMenu id="menuDerivacionsEstat" style="width=100%;" value="#{BDadesExpedient.consulta.derivacioEstat}">
+										<f:selectItems value="#{BDadesExpedient.llistatDerivacioEstat}" id="selectItemsDerivacioEstat"></f:selectItems>
+									 </pf:selectOneMenu>	
+								 </h:panelGroup>
+								 
+								 <h:panelGroup>
+									 <pf:outputLabel id="lblDerivacioGeneralitat" styleClass="outputText" value="Derivació Generalitat:"></pf:outputLabel>
+									 <pf:selectOneMenu  id="menuDerivacioGeneralitat"  style="width=100%;" value="#{BDadesExpedient.consulta.derivacioGeneralitat}">
+									 <f:selectItems value="#{BDadesExpedient.llistatDerivacioGeneralitat}" id="selectItemsDerivacionsGeneralitat"></f:selectItems>
+									 </pf:selectOneMenu >
+								 </h:panelGroup>
+								 
+								  <h:panelGroup>
+									 <pf:outputLabel id="lblDerivacionsEntitats" styleClass="outputText" value="Derivació Entitat:"></pf:outputLabel><br/>
+									 <pf:selectOneMenu id="menuDerivacionsEntitats" style="width=100%;" value="#{BDadesExpedient.consulta.derivacioEntitat}">
+										<f:selectItems value="#{BDadesExpedient.llistatDerivacioEntitat}" id="selectItemsDerivacioEntitat"></f:selectItems>
+									 </pf:selectOneMenu>
+								 </h:panelGroup>
+								 
+								 <h:panelGroup>
+									 <pf:outputLabel id="lblDerivacionsConsellComarcal" styleClass="outputText" value="Derivació Consells Comarcals:"></pf:outputLabel><br/>
+									 <pf:selectOneMenu id="menuDerivacionsConsellComarcal" style="width=100%;" value="#{BDadesExpedient.consulta.derivacioConsellComarcal}">
+										<f:selectItems value="#{BDadesExpedient.llistatDerivacioConsellComarcal}" id="selectItemsDerivacioConsellComarcal"></f:selectItems>
+									 </pf:selectOneMenu>	
+								 </h:panelGroup>
+	
+				   			</pf:panelGrid>
+			   				 
+			   				 <pf:panelGrid columns="1" layout="grid" contentStyleClass="p-align-baseline ui-fluid" sttyle="width=100%;">
+		        				<f:facet name="header">
+				        				<pf:outputLabel id="lblDerivacionsInternesTitle" styleClass="outputLabelRed" value="Derivacions Internes"></pf:outputLabel>
+				        				<br/><hr  size="1" color="gray"/>
+				   				 </f:facet>
+				   				  <h:panelGroup>
+									 <pf:outputLabel id="lblDerivacionsInternes" styleClass="outputText" value="Derivació Interna:"></pf:outputLabel><br/>
+									 <pf:selectOneMenu  id="menuDerivacionsInternes" style="width=100%;"  value="#{BDadesExpedient.consulta.derivacioInterna}">
+										<f:selectItems value="#{BDadesExpedient.llistatDerivacioInterna}" id="selectItemsDerivacioInternes"></f:selectItems>
+									 </pf:selectOneMenu>
+								 </h:panelGroup>
+				   			</pf:panelGrid>
+	        			</pf:panelGrid>
+	        		</pf:tab>
+        		</pf:accordionPanel>
+        		</h:panelGroup>
+        		<br/>
+
+				<div style="padding: 10px; text-align: center;">
+					<pf:commandButton value="Confirma" id="btnConfirmaNovaConsulta" style="margin-right:20px;padding-left:10px;" icon="pi pi-check" action="#{pc_DetallsExpedient.btnAltaConsultaAction}" oncomplete="PF('dialogConsulta').hide();" immediate="true" process="@this" update="dataTableConsultes panelNovaConsulta message" />
+					<pf:commandButton value="Cancel·la" id="btnCancelaNovaConsulta" style="margin-right:20px;padding-left:10px;" icon="pi pi-times" action="#{pc_DetallsExpedient.btnCancelaAltaConsultaAction}" oncomplete="PF('dialogConsulta').hide();"/>
+				</div>
+
+			</pf:dialog>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

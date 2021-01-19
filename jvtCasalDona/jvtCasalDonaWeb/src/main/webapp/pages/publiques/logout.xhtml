@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- jsf:pagecode language="java" location="/src/pagecode/pages/publiques/Logout.java" --><!-- /jsf:pagecode -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	template="/layout/loginLayout.xhtml"
+	xmlns:pf="http://primefaces.org/ui">
+	
+	<title>Sortir</title>
+	<h:outputStylesheet library="css" name="stylesheet.css" />
+	<link rel="stylesheet" type="text/css" title="Style" href="../../resources/css/stylesheet.css" />
+	
+	<ui:define name="pageContent">
+	<form action="../../DoLogout" method="post">
+		<div class="form" align="center">
+			<br />
+			<br />
+			
+			<pf:panel id="accesAplicacio" header="Tancar sessió" style="margin-bottom:20px; width:40%;min-width:200px;max-width:350px;text-align:left;" >
+				 <h:panelGrid columns="2" cellpadding="15" border="0">
+					<i class="fa fa-user-circle-o" style="color: #818181; font-size: 65px;"></i>
+					<h:panelGroup>
+					<label id="lblUsuari" class="outputText">Premi el botó de Sortir per tancar la sessió</label>
+					</h:panelGroup>
+				 </h:panelGrid>
+	    	</pf:panel>
+	    	<button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" name="logout" value="true">
+                    <span class="ui-button-text">Sortir</span>
+             </button>
+             <button type="submit" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" name="logout" value="false">
+                    <span class="ui-button-text">Cancel·la</span>
+             </button>
+			<br />
+			<br />
+		</div>
+	</form>
+	</ui:define>
+</ui:composition>

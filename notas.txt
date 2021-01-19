@@ -70,3 +70,15 @@ Instalación de Jenkins  Docker (docker-compose)
 ---
 
 ---
+
+
+Trabajar con Docker
+
+Los volumenes que residan en un almacenamiento externo: NFS
+
+Orquestadores de contenedores
+    Kubernetes, Openshift - Gestionar un cluster de maquinas fisica/virtuales
+
+
+Pruebas unitarias: 
+    Metodologia TDD: Hacer primero las pruebas y luego el codigo

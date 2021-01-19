@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+	<groupId>cat.paeria.igualtat</groupId>
+	<artifactId>jvtCasalDona</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+</parent>
+	<artifactId>jvtCasalDonaEAR</artifactId>
+	<packaging>ear</packaging>
+	
+	<dependencies>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>jvtCasalDonaWeb</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>jvtCasalDonaEJB</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>ejb</type>
+		</dependency>
+	</dependencies>
+
+	<build>
+
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>3.0.2</version>
+				<configuration>
+					<applicationName>jvtCasalDona</applicationName>
+					<!-- <includeInApplicationXml>true</includeInApplicationXml>  -->
+					<modules>
+						<ejbModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>jvtCasalDonaEJB</artifactId>
+							<bundleFileName>jvtCasalDonaEJB.jar</bundleFileName>
+						</ejbModule>
+						<webModule>
+							<groupId>${project.parent.groupId}</groupId>
+							<artifactId>jvtCasalDonaWeb</artifactId>
+							<contextRoot>/jvtCasalDonaWeb</contextRoot>
+							<bundleFileName>jvtCasalDonaWeb.war</bundleFileName>
+						</webModule>
+					</modules>
+					<generateApplicationXml>true</generateApplicationXml>
+				</configuration>
+			</plugin>
+
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-ear-plugin</artifactId> 
+				<configuration> <modules> <webModule> <groupId>${project.parent.groupId}</groupId> 
+				<artifactId>jvtCasalDonaWeb</artifactId> <uri>jvtCasalDonaWeb.war</uri> <bundleFileName>jvtCasalDonaWeb.war</bundleFileName> 
+				</webModule> <ejbModule> <groupId>${project.parent.groupId}</groupId> <artifactId>jvtCasalDonaEJB</artifactId> 
+				</ejbModule> </modules> </configuration> </plugin> -->
+		</plugins>
+	</pluginManagement>
+</build>
+	<name>jvtCasalDona Maven EAR</name>
+</project>
