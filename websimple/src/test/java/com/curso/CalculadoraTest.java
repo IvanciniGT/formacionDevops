@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * Por qué varios tipos de pruebas.
- * La idea es que cuando una prueba falle, sepa identificar univocamente, qué falla
+ * La idea es que cuando una prueba falle, sepa identificar univocamente, que
  * Las pruebas unitarias, deben SOLO probar 
  * funciones muy simples.
  *   - Mocks (Mockito):
@@ -30,8 +30,7 @@ public class CalculadoraTest
     public void testSumarNegativos()
     {
         int resultadoEsperado=4;
-        int resultado=C
-        alculadora.suma(9,-5);
+        int resultado=Calculadora.suma(9,-5);
         assertEquals(resultadoEsperado,resultado );
     }
     @Test
